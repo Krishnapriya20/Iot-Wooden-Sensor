@@ -1,0 +1,23 @@
+import joblib
+import pandas as pd
+
+# Load the trained model
+model = joblib.load("models/safety_model.pkl")
+
+# Sample data for prediction (e.g., a new furniture sensor reading)
+new_data = pd.DataFrame({
+    'humidity': [75],
+    'temperature': [28],
+    'pressure': [1009],
+    'age': [12],
+    'crack_level': [0.5]
+})
+
+# Make prediction
+prediction = model.predict(new_data)
+
+# Decode the prediction
+if prediction == 1:
+    print("Warning: The wooden furnishing is at risk!")
+else:
+    print("The wooden furnishing is safe.")
